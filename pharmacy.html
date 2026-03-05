@@ -1,0 +1,14 @@
+{% extends 'hms/base.html' %}
+{% block content %}
+<h2>Pharmacy Inventory</h2>
+<div class="card">
+    <table>
+        <thead><tr><th>Medicine</th><th>Stock</th><th>Price</th></tr></thead>
+        <tbody>
+            {% for med in medicines %}
+            <tr><td>{{ med.name }}</td><td>{{ med.stock }}</td><td>{{ med.price }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

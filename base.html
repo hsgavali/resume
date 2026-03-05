@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIS 2026 | Hospital Information System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/" style="font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none;">HMS 2026</a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Dashboard</a>
+            <a href="/patients/">Patients</a>
+            <a href="/appointments/">Appointments</a>
+            <a href="/lab/">Laboratory</a>
+            <a href="/pharmacy/">Pharmacy</a>
+            <a href="/admin/">Admin Portal</a>
+        </div>
+        <div class="user-info">
+            {% if user.is_authenticated %}
+                <span style="margin-right: 1rem;">Welcome, {{ user.username }}</span>
+                <a href="/admin/logout/" class="btn btn-primary" style="padding: 0.25rem 0.75rem;">Logout</a>
+            {% else %}
+                <a href="/admin/login/" class="btn btn-primary" style="padding: 0.25rem 0.75rem;">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted);">
+        <p>&copy; 2026 HIS. Modern Healthcare Excellence.</p>
+    </footer>
+</body>
+</html>

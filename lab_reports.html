@@ -1,0 +1,14 @@
+{% extends 'hms/base.html' %}
+{% block content %}
+<h2>Laboratory Reports</h2>
+<div class="card">
+    <table>
+        <thead><tr><th>Patient</th><th>Test</th><th>Result</th><th>Date</th></tr></thead>
+        <tbody>
+            {% for report in reports %}
+            <tr><td>{{ report.patient.name }}</td><td>{{ report.test_name }}</td><td>{{ report.result }}</td><td>{{ report.date }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'hms/base.html' %}
+
+{% block content %}
+<div style="margin-bottom: 2rem;">
+    <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Hospital Dashboard</h2>
+    <p style="color: var(--text-muted);">Real-time overview of hospital operations.</p>
+</div>
+
+<div class="grid">
+    <div class="card stats-card">
+        <div class="value">{{ doctor_count }}</div>
+        <div class="label">Doctors</div>
+    </div>
+    <div class="card stats-card">
+        <div class="value">{{ patient_count }}</div>
+        <div class="label">Patients</div>
+    </div>
+    <div class="card stats-card">
+        <div class="value">{{ appointment_count }}</div>
+        <div class="label">Total Appointments</div>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 2rem;">
+    <h3 style="margin-bottom: 1.5rem;">Recent Appointments</h3>
+    {% if recent_appointments %}
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in recent_appointments %}
+            <tr>
+                <td>{{ appt.patient.name }}</td>
+                <td>{{ appt.doctor.user.get_full_name }}</td>
+                <td>{{ appt.date }}</td>
+                <td>{{ appt.time }}</td>
+                <td><span class="badge {% if appt.status == 'Completed' %}badge-success{% else %}badge-warning{% endif %}">{{ appt.status }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="color: var(--text-muted);">No recent appointments found.</p>
+    {% endif %}
+</div>
+{% endblock %}
